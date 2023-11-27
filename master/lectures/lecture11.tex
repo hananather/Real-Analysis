@@ -1,0 +1,79 @@
+\newpage
+\section{October 19, 2023}
+Recall that if $(X,d)$ is a metric space, a set $U$ is open if $\forall x \in U, \exists \epsilon > 0$ such that $B(x,\epsilon) \subseteq U$ or $U = \varnothing$.
+
+\begin{itemize}
+
+    \item \textbf{Real Numbers $\mathbb{R}$:}
+        \begin{itemize}
+            \item Metric: $d(x,y) = |x-y|$
+            \item Open ball: $B(x_0,\epsilon) = (x_0 - \epsilon, x_0 + \epsilon)$
+            \item \textbf{Example:} For $x_0 = 2$ and $\epsilon = 0.5$, the open ball is $B(2,0.5) = (1.5, 2.5)$.
+        \end{itemize}
+    
+    \item \textbf{Euclidean Plane $\mathbb{R}^2$:}
+        \begin{itemize}
+            \item Open ball: Set of all points inside the circle of radius $\epsilon$ centered at $(x_0,y_0)$ without the boundary.
+            \item \textbf{Example:} For $(x_0,y_0) = (1,2)$ and $\epsilon = 1$, the open ball is the interior of the circle of radius 1 centered at $(1,2)$.
+        \end{itemize}
+    
+    \item \textbf{Euclidean 3-space $\mathbb{R}^3$:}
+        \begin{itemize}
+            \item Open ball: Set of all points inside the sphere of radius $\epsilon$ centered at $(x_0,y_0,z_0)$ without the boundary.
+            \item \textbf{Example:} For $(x_0,y_0,z_0) = (1,2,3)$ and $\epsilon = 1$, the open ball is the interior of the sphere of radius 1 centered at $(1,2,3)$.
+        \end{itemize}
+    
+    \item \textbf{Continuous Functions $C[a,b]$:}
+        \begin{itemize}
+            \item Metric: $d(f,g) = \sup_{x \in [a,b]} |f(x) - g(x)|$
+            \item Open ball: Set of all functions $g$ such that $d(f_0,g) < \epsilon$.
+            \item \textbf{Example:} Let $f_0(x) = x$ on $[0,1]$. The open ball of radius $\epsilon = 0.5$ centered at $f_0$ contains functions $g$ on $[0,1]$ with $\sup_{x \in [0,1]} |x - g(x)| < 0.5$.
+        \end{itemize}
+    
+\end{itemize}
+
+
+\subsection{Closed Sets}
+
+Recall: Let $(X,d)$ be a metric space. A set $S \subset X$ is said to be sequentially closed if for every sequence $\{ x_n \}$ in $S$ that converges in $X$, we have $\lim_{n \to \infty} x_n = x$ implies $x \in S$. 
+If $(X, \tau)$ is a topological space, a set $S \subseteq X$ is called closed if its complement $S^c$ in $X$ is open.
+
+\begin{theorem}
+    Let $(X,d)$ be a metric space and let $\tau_d$ denote the metric topology induced by $d$. A set $S \subseteq X$ is closed in the metric topology if and only if it is sequentially closed in $X$.
+\end{theorem}
+\begin{proof}
+    Only if part: Suppose that $S \subseteq X$ is closed. We have to prove that $S$ is sequentially closed. Let $\{x_n \}$ be a sequence in $S$ such that $x = \lim_{n \to \infty} x_n$ exists. We want to show that  $x \in S$. Suppose that $x \in S^c$. 
+    Since $S$ is closed, $S^c$ is open. Hence, $\exists \epsilon > 0$ such that $B(x, \epsilon) \subseteq S^c$. Since  $ x_n \to x$, there exists $N \in \NN$ such that $x_n \in B(x, \epsilon)$ for all $n > N$. So  $x_n \in S^c$ $\forall n > N$. This is a contradiction since  $\{x_n\}$ is a sequence in $S$. Recall that:  $x_n \to x$ means that $d(x_n, x) \to 0$.
+    \\
+    \\
+    $``\implies":$ Now suppose that $S \subseteq X$ is sequentially closed. We have to prove that $S$ is closed, i.e., $S^c$ is open. 
+    Suppose that $S^c$ is not open. This means that there exists an $x \in S^c$ such that for all $\delta >0,$ $B(x, \delta) \nsubseteq \in S^c$.
+    [Complete the proof]
+\end{proof}
+
+\note{
+Given a topological space $(X, \tau)$ it is not always possible to find a distance $d$ on $X$ such that $\tau = \tau_d$. If this is possible, we that $\tau$ is \vocab{metrizable}.
+}
+
+\begin{definition}
+    Let $(X, \tau)$ be a topological space. 
+    \begin{enumerate}[(a)]
+        \item If  $x \in X$ and $U \subseteq X$ is an open set such that $x \in U$, then we say that $U$ is a neighbourhood of $x$.
+        \item A point $x \in X$ is called a cluster point (or accumulation point) of a set $S \subseteq X$ if every neighbourhood $U$ of $x$ intersects $S$ in at least one point other than $x$ (when $x \in S$).
+        \item The set of all cluster points of $S$ is called the derived set (or limit point set) of $S$ and is denoted by $S'$.
+        \item A point $x \in X$ is called an adherent point of $S$ if, for every neighbourhood $U$ of $x$, $U \cap S \neq \varnothing$. This implies that $x$ can be either in \( S \) or not in \( S \)\footnote{So, every cluster point is indeed a adherent (closure) point. However, not all closure points are cluster points because a adherent (closure) point could be a point in $S$ that doesn't have other points from $S$ arbitrarily close to it.}.
+    \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+    Let $(X,\tau)$ be a topological space and $S \subseteq X$. Then $x \in \bar{S} \iff x$ is an adherent point. 
+\end{lemma}
+\begin{proof}
+    Complete the proof. Its pretty long.
+\end{proof}
+
+
+\begin{proposition}
+    Suppose $S$ is a subset of a metric space $(X,d)$, then $x \in X$ is an adherent point of $S$ if and only if some sequence in $S$ converges to $x$. 
+\end{proposition}
+

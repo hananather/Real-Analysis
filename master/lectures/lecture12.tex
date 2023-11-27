@@ -1,0 +1,80 @@
+\newpage
+\section{October 30, 2023}
+\subsection{Closed Sets continued}
+\begin{theorem}
+    A set $S$ in a topological space is closed if and only if it contains cluster points, that is $S \supseteq S'$\footnote{$S'$ is the set of all cluster point i.e., the derived set}.
+\end{theorem}
+\begin{proof}
+    Prove this.
+\end{proof}
+
+\subsection{Compact Sets}
+In any metric space \( (X,d) \) containing at least two distinct points \( x \) and \( y \), we can always find open balls centered at \( x \) and \( y \) that are disjoint. For example, take the open balls \( B(x, r) \) and \( B(y, r) \), with \( r < \frac{1}{2} d(x, y) \). Not all topological spaces possess this property. However, this property is fundamental for many analyses in topology. Spaces with this property are given a special name: they are called \textit{Hausdorff spaces} or \textit{T2 spaces}.
+
+
+\begin{definition}[Compactness]
+    A subset \( S \) of a topological space is said to be \textit{compact} if for every collection \(\{ U_\alpha \}\) of open sets such that \( S \subseteq \bigcup_\alpha U_\alpha \) (i.e., the union of the sets in the collection contains \( S \)), there exists a finite sub-collection \(\{ U_{\alpha_1}, U_{\alpha_2}, \ldots, U_{\alpha_n} \}\) such that \( S \subseteq \bigcup_{i=1}^n U_{\alpha_i} \).
+\end{definition}
+
+\begin{theorem}[Equivalence of Compactness Theorem ]
+    Let $(X,d)$ be a metric space. Then, a subset $S \subseteq X$ is compact if and only if it is sequentially compact.
+\end{theorem}
+\begin{proof}
+    Omitted.
+\end{proof}
+
+
+\begin{definition}[Hausdorff Space]
+    A topological space \( (X, \mathcal{T}) \) is called a \textit{Hausdorff space}, and \( \mathcal{T} \) is called a \textit{Hausdorff topology}, if for every pair of distinct points \( x, y \in X \), there exists a neighbourhood \( U_x \) of \( x \) and a neighbourhood \( U_y \) of \( y \) such that \( U_x \cap U_y = \emptyset \).
+\end{definition}
+
+In essence, a space \( X \) is termed Hausdorff when any two distinct points within it can be enclosed by non-overlapping neighbourhoods. It's established that all metric spaces possess this Hausdorff property. Likewise, any set endowed with the discrete topology, denoted as \( \mathcal{T}_{\text{max}} \), is also Hausdorff. In contrast, the indiscrete topology, \( \mathcal{T}_{\text{min}} \), doesn't meet the Hausdorff criterion unless it's defined over a set with a single point or none. Amidst the diverse spectrum of topological properties, the Hausdorff characteristic stands out as a fundamental trait shared by numerous, albeit not all, topological spaces.
+
+\begin{lemma}[Metric Spaces are Hausdorff]
+    Let \( (X, d) \) be a metric space, and let \( \tau_d \) be the topology induced by \( d \). Then, the topological space \( (X, \tau_d) \) is a Hausdorff space.
+\end{lemma}
+\begin{proof}
+        Let \( x, y \in X \) be distinct points. Since \( d(x,y) > 0 \), we can choose \( \epsilon = \frac{d(x,y)}{2} \). Consider the open balls \( B(x, \epsilon) \) and \( B(y, \epsilon) \). Clearly, \( x \in B(x, \epsilon) \) and \( y \in B(y, \epsilon) \). Moreover, \( B(x, \epsilon) \) and \( B(y, \epsilon) \) are disjoint because for any point \( z \) in their intersection, we would have \( d(x,z) < \epsilon \) and \( d(y,z) < \epsilon \), which contradicts the triangle inequality. Thus, we have found disjoint open neighborhoods for \( x \) and \( y \), and so \( (X, \tau_d) \) is Hausdorff.
+    \end{proof}
+
+\begin{theorem}[Compact Sets in Hausdorff Spaces]
+    Let \( (X, \tau) \) be a Hausdorff topological space. Then, every compact subset \( K \) of \( X \) is closed.
+\end{theorem}
+  \begin{proof}
+        To show that \( K \) is closed, it suffices to show that its complement \( X \setminus K \) is open. Let \( x \in X \setminus K \). For each \( y \in K \), since \( (X, \tau) \) is Hausdorff, there exist open sets \( U_y \) and \( V_y \) such that \( x \in U_y \), \( y \in V_y \), and \( U_y \cap V_y = \emptyset \). The collection \( \{ V_y \} \) forms an open cover for \( K \). Since \( K \) is compact, there exists a finite subcollection \( \{ V_{y_1}, V_{y_2}, \ldots, V_{y_n} \} \) that covers \( K \). Let \( U = \cap_{i=1}^{n} U_{y_i} \). Then, \( U \) is an open set containing \( x \) that does not intersect \( K \). Hence, \( X \setminus K \) is open, and \( K \) is closed.
+    \end{proof}
+\begin{theorem}[Heine-Borel Theorem]
+    Let \( S \subseteq \mathbb{R} \). The subset \( S \) is compact in \( \mathbb{R} \) with the standard topology if and only if \( S \) is both closed and bounded.
+\end{theorem}
+\begin{proof}
+        \textbf{($\Rightarrow$) Direction:} Suppose \( S \) is compact. 
+        \begin{itemize}
+            \item \textit{Boundedness:} If \( S \) were not bounded, for each \( n \in \mathbb{N} \), pick \( x_n \in S \) such that \( |x_n| > n \). This would produce a sequence without a convergent subsequence in \( S \), which contradicts the compactness of \( S \).
+            \item \textit{Closedness:} Let \( (x_n) \) be a sequence in \( S \) that converges to \( x \). Since \( S \) is compact, the sequence has a convergent subsequence that also converges to \( x \). Thus, \( x \) must be in \( S \), implying \( S \) is closed.
+        \end{itemize}
+
+        \textbf{($\Leftarrow$) Direction:} Suppose \( S \) is both closed and bounded. By Bolzano-Weierstrass, any sequence in \( S \) has a convergent subsequence. Since \( S \) is closed, the limit of this subsequence also lies in \( S \). Hence, \( S \) is compact by the sequential characterization of compactness.
+    \end{proof}
+
+
+
+\subsection{Continuity in Topological spaces}
+In calculus, we typically define continuity in terms of limits and the behavior of functions on the real numbers. However, in the broader setting of topological spaces, we use the open set definition, which captures the essence of continuity in a more general setting.
+
+\begin{definition}[Sequential Continuity in Metric Spaces]
+    Let \( (X, d) \) and \( (Y, d') \) be two metric spaces. A function \( f: X \to Y \) is said to be \textit{sequentially continuous} at a point \( x \in X \) if for every sequence \( \{ x_n \} \) in \( X \) that converges to \( x \) (i.e., \( x_n \to x \) as \( n \to \infty \)), the sequence \( \{ f(x_n) \} \) in \( Y \) converges to \( f(x) \) (i.e., \( f(x_n) \to f(x) \) as \( n \to \infty \).
+\end{definition}
+
+\begin{definition}[Continuity on \(\mathbb{R}\)]
+    Let \( f: \mathbb{R} \to \mathbb{R} \) be a function and let \( c \) be a point in its domain. The function \( f \) is said to be \textit{continuous at \( c \)} if, for every \(\epsilon > 0\), there exists a \(\delta > 0\) such that, for all \( x \) in \(\mathbb{R}\) satisfying \( 0 < |x - c| < \delta \), we have \( |f(x) - f(c)| < \epsilon \).
+
+    The function \( f \) is said to be \textit{continuous on \(\mathbb{R}\)} if it is continuous at every point \( c \) in its domain.
+\end{definition}
+
+\begin{definition}
+    Let $(X, \mathcal{T})$ be a topological space.
+    \begin{enumerate}[(a)]
+        \item We say that a sequence \(\{x_n\}\) in \(X\) converges to a limit \(x \in X\) if for any neighbourhood \(U\) of \(x\), there exists \(N \in \mathbb{N}\) such that \(x_n \in U\) for all \(n > N\).
+        \item Let \( (Y, \mathcal{T}') \) be another topological space and \(f: X \to Y\). We say that \(f\) is sequentially continuous at \(x \in X\) if, for every sequence \(\{ x_n \} \subset X\) such that \(x_n \to x\), we have \(f(x_n) \to f(x)\).
+    \end{enumerate}
+\end{definition}

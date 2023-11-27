@@ -1,0 +1,203 @@
+\section{September 7, 2023}
+\begin{definition}[Metric Space]
+    A metric space is a nonempty set \( X \) together with a mapping \( d: X \times X \rightarrow \mathbb{R}^+ = [ 0, \infty) \) with the properties:
+    \begin{enumerate}
+        \item \( d(x, y) = 0 \) if and only if \( x = y \) \quad \( (x, y \in X) \)
+        \item \( d(x, y) = d(y, x) \) for all \( x, y \in X \)
+        \item \( d(x, z) \leq d(x, y) + d(y, z) \) for all \( x, y, z \in X \)
+    \end{enumerate}
+\end{definition}
+
+\begin{example}[Natural Metric]
+    Let \( X \) be any nonempty set of real numbers and define \( d \) by
+    \[
+    d(x, y) = |x - y|, \quad x, y \in X.
+    \]
+    This is the usual definition of distance between two points. 
+\end{example}
+\begin{proof}
+To prove that this is a metric, we need to show that \( d(x, y) \) satisfies the three metric properties (M1, M2, and M3).
+
+\begin{enumerate}
+    \item \textbf{Non-negativity and Identity of Indiscernibles (M1):}
+    
+    We have \( d(x, y) = |x - y| \geq 0 \) for all \( x, y \in X \). Furthermore, \( d(x, y) = 0 \) if and only if \( x = y \).
+    
+    \item \textbf{Symmetry (M2):}
+    
+    \( d(x, y) = |x - y| = |y - x| = d(y, x) \) for all \( x, y \in X \).
+    
+    \item \textbf{Triangle Inequality (M3):}
+    
+    \( d(x, z) = |x - z| \) \\
+    \( \leq |x - y| + |y - z| \) \\
+    \( = d(x, y) + d(y, z) \) for all \( x, y, z \in X \).
+\end{enumerate}
+\end{proof}
+
+
+\begin{example}[Distance in $\RR^2$]
+    Let \( X \) be any nonempty set of points in the plane (so \( X \) may be considered as a subset of \( \mathbb{R}^2 \)) and define \( d \) by
+    \[
+    d(x, y) = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2},
+    \]
+    where \( x = (x_1, x_2) \) and \( y = (y_1, y_2) \) are any two points of \( X \).
+\end{example}
+
+\begin{proof}
+To prove that \( d(x, y) \) is a metric, we need to verify that it satisfies the three metric properties (M1, M2, and M3).
+
+\begin{enumerate}
+    \item \textbf{Non-negativity and Identity of Indiscernibles (M1):}
+    
+    Note that \( (x_1 - y_1)^2 \geq 0 \) and \( (x_2 - y_2)^2 \geq 0 \) for all \( x, y \in X \). Thus,
+    \[
+    d(x, y) = (x_1 - y_1)^2 + (x_2 - y_2)^2 \geq 0.
+    \]
+    Furthermore, \( d(x, y) = 0 \) if and only if \( x_1 = y_1 \) and \( x_2 = y_2 \), which implies \( x = y \).
+    
+    \item \textbf{Symmetry (M2):} is obvious.  
+    \item \textbf{Triangle Inequality (M3):}
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+    In a metric space \( (X, d) \), an \vocab{open ball} of radius \( r \) centered at a point \( a \) is defined as the set of all points \( x \) in \( X \) such that \( d(x, a) < r \). Formally, the open ball \( B(a, r) \) is given by
+    \[
+    B(a, r) = \{ x \in X \mid d(x, a) < r \}.
+    \]
+\end{definition}
+
+
+\begin{definition}
+    In a metric space \( (X, d) \), an \vocab{ closed  ball} of radius \( r \) centered at a point \( a \) is defined as the set of all points \( x \) in \( X \) such that \( d(x, a) \leq r \).
+    \[
+    \overline{B(a)_r} = \{ x \in X \mid d(x, a) \leq r \}.
+    \]
+\end{definition}
+
+\begin{example}
+    We can define an alternative metric \( d' \) on the same set \( X = \RR^2 \) as follows:
+    \[
+    d'(x, y) = \max\{|x_1 - y_1|, |x_2 - y_2|\}.
+    \]
+    This metric \( d' \) has a different interpretation compared to the Euclidean metric. In \( d' \), the distance between two points \( x \) and \( y \) is defined as the maximum of the absolute differences of their respective coordinates. This is often referred to as the \textit{Chebyshev distance} or \textit{L\textsubscript{$\infty$} metric}, and it essentially measures the "greatest single axis" distance between two points.
+
+\end{example}
+\begin{proof}
+    \item (M1): $d'(x,y) = 0 \iff |x_{1} - y_{1}| =0$ and $|x_{2} - y_{2}| =0 \iff x_1 = y_1$ and $x_2 - y_2 = 0$ 
+    \item (M2): Obvious.
+    \item 
+\end{proof}
+\begin{example}[Euclidean metric]
+    Let \(X\) be any nonempty subset of \(\mathbb{R}^n\), meaning that \(X\) consists of ordered \(n\)-tuples of real numbers. We define the distance \(d\) between any two points \(x\) and \(y\) in \(X\) by
+    \[
+    d(x, y) = \sqrt{\sum_{k=1}^{n} (x_k - y_k)^2},
+    \]
+    where \(x = (x_1, x_2, \ldots, x_n)\) and \(y = (y_1, y_2, \ldots, y_n)\).
+
+    This mapping \(d\) is commonly known as the \textit{Euclidean metric} for such a set \(X\). Henceforth, when we refer to the metric space \(\mathbb{R}^n\) (as opposed to merely the set \(\mathbb{R}^n\)), we imply that the metric space \((X, d)\) of this example is being considered with \(X = \mathbb{R}^n\). In other words, any reference to the metric space \(\mathbb{R}^n\) will always imply that the Euclidean metric is being used. The term \textit{Euclidean space} is often used synonymously with the metric space \(\mathbb{R}^n\).
+
+\end{example}
+
+\begin{theorem}[Cauchy-Schwarz Inequality]
+    For any points \( \mathbf{a} = (a_1, a_2, \ldots, a_n) \) and \( \mathbf{b} = (b_1, b_2, \ldots, b_n) \) in \( \mathbb{R}^n \), the following inequality holds:
+    \[
+    \left( \sum_{k=1}^{n} a_k b_k \right)^2 \leq \left( \sum_{k=1}^{n} a_k^2 \right) \left( \sum_{k=1}^{n} b_k^2 \right) 
+    \]
+\end{theorem}
+\begin{proof}
+    To prove the Cauchy--Schwarz Inequality, we introduce the function \( \psi(u) \) defined by
+    \[
+    \psi(u) = \sum_{k=1}^{n} \left(a_k u + b_k\right)^2.
+    \]
+    It is evident that \( \psi(u) \) is a quadratic form in \( u \), having the general form \( Au^2 + 2Bu + C \).
+    
+    Being a sum of squares, \( \psi(u) \) is non-negative for all \( u \), i.e., \( \psi(u) \geq 0 \). Hence, the discriminant of this quadratic form, \( (2B)^2 - 4AC \), cannot be positive. 
+    
+    Dividing the discriminant by 4, we have
+    \[
+    \frac{(2B)^2}{4} - AC = B^2 - AC \leq 0.
+    \]
+    This can be rewritten as
+    \[
+    \left(\sum_{k=1}^{n} a_k b_k\right)^2 - \left(\sum_{k=1}^{n} a_k^2\right)\left(\sum_{k=1}^{n} b_k^2\right) \leq 0,
+    \]
+    which proves the Cauchy--Schwarz Inequality.
+    
+    We can use this inequality as a foundation for other inequalities and results in real analysis and vector spaces.
+    
+\end{proof}
+
+\begin{theorem}
+    For any points \( \mathbf{a} = (a_1, a_2, \ldots, a_n) \) and \( \mathbf{b} = (b_1, b_2, \ldots, b_n) \) in \( \mathbb{R}^n \), we have the following inequality:
+    \[
+    \left( \sum_{k=1}^{n} (a_k + b_k)^2 \right) \leq \left( \sum_{k=1}^{n} a_k^2 \right) + \left( \sum_{k=1}^{n} b_k^2 \right).
+    \]
+\end{theorem}
+\begin{proof}
+    Taking the square roots of both sides of the Cauchy--Schwarz inequality gives:
+    \[
+    \sqrt{\left( \sum_{k=1}^{n} a_k^2 \right) \left( \sum_{k=1}^{n} b_k^2 \right)} \geq \left| \sum_{k=1}^{n} a_k b_k \right|.
+    \]
+\end{proof}
+
+\begin{example}[$l^{p}$-metric on $\RR^n$]
+    The \( L^p \) metric, also known as the \( L^p \) distance, is defined for \( p \geq 1 \) and provides a generalized notion of distance between points in \( \mathbb{R}^n \). For two points \( x = (x_1, x_2, \ldots, x_n) \) and \( y = (y_1, y_2, \ldots, y_n) \), the \( L^p \) distance \( d_p(x, y) \) is defined as:
+    \[
+    d_p(x, y) = \left( \sum_{k=1}^{n} |x_k - y_k|^p \right)^{1/p}.
+    \]
+\end{example}
+\begin{proof}
+    The verification (M3) is difficult requires the \textit{Holder inequality}.
+\end{proof}
+
+\begin{example}[$l^{\infty}-$metric on $\RR^n$]
+    The \( L^\infty \) metric, also known as the Chebyshev distance or infinity norm, is defined for points \( x = (x_1, x_2, \ldots, x_n) \) and \( y = (y_1, y_2, \ldots, y_n) \) in \( \mathbb{R}^n \) as:
+    \[
+    d_\infty(x, y) = \max_{1 \leq k \leq n} |x_k - y_k|.
+    \]
+\end{example}
+
+\begin{definition}[$l_2$ space]
+    The \( \ell_2 \) space is a vector space consisting of all sequences \( x = (x_1, x_2, x_3, \ldots) \) of real or complex numbers for which the \( \ell_2 \) norm is finite. The \( \ell_2 \) norm \( \| x \|_2 \) is defined as:
+    \[
+    \| x \|_2 = \left( \sum_{n=1}^{\infty} |x_n|^2 \right)^{1/2} < \infty.
+    \]
+    A sequence is in \( \ell_2 \) if it is "square-summable," meaning that the sum of the squares of its elements is finite. \\
+    A natural metric on the \( \ell_2 \) space can be defined using the \( \ell_2 \) norm. Given two sequences \( x = (x_1, x_2, x_3, \ldots) \) and \( y = (y_1, y_2, y_3, \ldots) \) in \( \ell_2 \), the distance \( d(x, y) \) between \( x \) and \( y \) is defined as:
+    \[
+    d(x, y) = \| x - y \|_2 = \left( \sum_{n=1}^{\infty} |x_n - y_n|^2 \right)^{1/2}.
+    \]
+    This metric is well-defined because the sequences \( x \) and \( y \) are both in \( \ell_2 \), making their \( \ell_2 \) norms and the distance \( d(x, y) \) finite.
+\end{definition}
+
+
+\begin{definition}[$l_p$ space]
+    The \( \ell^p \) space is a generalization of the \( \ell^2 \) space and consists of all sequences \( x = (x_1, x_2, x_3, \ldots) \) of real or complex numbers for which the \( \ell^p \) norm is finite. The \( \ell^p \) norm \( \| x \|_p \) is defined as:
+    \[
+    \| x \|_p = \left( \sum_{n=1}^{\infty} |x_n|^p \right)^{1/p} < \infty,
+    \]
+    where \( 1 \leq p < \infty \).
+    A metric \( d_p \) on the \( \ell^p \) space can be naturally defined using the \( \ell^p \) norm. For two sequences \( x \) and \( y \) in \( \ell^p \), the distance \( d_p(x, y) \) is:
+    \[
+    d_p(x, y) = \left( \sum_{n=1}^{\infty} |x_n - y_n|^p \right)^{1/p}.
+    \]
+\end{definition}
+
+\begin{example}
+    For the space \( C[a, b] \), consisting of all continuous functions defined on the interval \( [a, b] \), the uniform metric \( d \) is defined as follows. Given two functions \( f \) and \( g \) in \( C[a, b] \), the distance \( d(f, g) \) between \( f \) and \( g \) is:
+    \[
+    d(f, g) = \sup_{x \in [a, b]} |f(x) - g(x)|.
+    \]
+    Here, \( \sup \) denotes the supremum, or the least upper bound, of the set \( \{ |f(x) - g(x)| : x \in [a, b] \} \).
+\end{example}
+
+\begin{example}
+    The \( C^1[a, b] \) space consists of all functions that are continuously differentiable on the closed interval \( [a, b] \). A common metric \( d \) used in \( C^1[a, b] \) is the \( C^1 \) metric, defined as follows. Given two functions \( f \) and \( g \) in \( C^1[a, b] \), the distance \( d(f, g) \) between \( f \) and \( g \) is:
+    \[
+    d(f, g) = \sup_{x \in [a, b]} |f(x) - g(x)| + \sup_{x \in [a, b]} |f'(x) - g'(x)|.
+    \]
+    This metric sums the uniform distance between the functions \( f \) and \( g \) and the uniform distance between their first derivatives \( f' \) and \( g' \).
+
+\end{example}

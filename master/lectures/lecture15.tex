@@ -1,0 +1,103 @@
+\newpage
+\section{November 9, 2023}
+\subsection{Homeomorphisms}
+
+\begin{definition}[Homeomorphism]
+    Let \( X \) and \( Y \) be topological spaces. A function \( f: X \to Y \) is called a \textit{homeomorphism} if it satisfies the following conditions:
+    \begin{enumerate}
+        \item \( f \) is a bijection (one-to-one and onto).
+        \item \( f \) is continuous.
+        \item The inverse function \( f^{-1}: Y \to X \) is also continuous.
+    \end{enumerate}
+    If such a function \( f \) exists, then \( X \) and \( Y \) are said to be homeomorphic.
+\end{definition}
+
+\textbf{Recall:} A bijection is a function that is both one-to-one and onto, and it always possesses an inverse function. Therefore, there exists a one-to-one correspondence between the points of two spaces if they are homeomorphic. Furthermore, since continuous mappings have the property that the inverse images of open sets are open, and both a homeomorphism and its inverse are continuous, it follows that there is also a one-to-one correspondence between the open sets of the two homeomorphic spaces. 
+
+For these reasons, in topology, two spaces that are homeomorphic are considered to be essentially identical. This is because homeomorphisms preserve the topological structure of spaces, meaning that the properties that are purely topological (like connectedness, compactness, continuity, etc.) are invariant under homeomorphisms.
+
+\begin{definition}
+A property \( P \) is called a \textit{topological property} if the fact that \( P \) holds in a topological space \( (X, \mathcal{T}) \) implies that \( P \) holds in any topological space \( (Y, \mathcal{T}') \) which is homeomorphic to \( (X, \mathcal{T}) \).
+\end{definition}
+
+\note{A \textit{topological property} is a feature of a space that is preserved under homeomorphisms. In other words, it is a property shared by all topological spaces that are homeomorphic to each other. These properties are intrinsic to the space's structure, irrespective of how the space is embedded or represented in a larger space.}
+
+Topological properties are fundamental to the study of topology, which can be thought of as the examination of properties that remain invariant under continuous deformations (like stretching, bending, but not tearing or gluing). This is why topology is sometimes colloquially referred to as ‘rubber sheet geometry’. In this analogy, a topological space can be envisioned as drawn on a rubber sheet, where homeomorphic transformations are akin to stretching or bending the sheet without tearing or cutting it.
+
+For instance, compactness is a topological property because if one space is compact, any space homeomorphic to it is also compact. However, completeness, which is often considered in the context of metric spaces, is not a topological property. This is evident from the fact that there are homeomorphic metric spaces where one is complete and the other is not. \footnote{A classic example of this concept is the topological equivalence of a circle and an ellipse, or a circle and a rectangle. Despite their different geometric shapes, from a topological perspective, they are identical because they can be transformed into one another through continuous deformation without tearing or gluing.}
+
+\begin{example}[Completeness is \textbf{not} a topological property.]
+    The function \( A: [1,\infty) \to (0,1] \) defined by \( A(x) = \frac{1}{x} \) is a homeomorphism between \([1,\infty)\) and \((0,1]\). Both spaces \([1,\infty)\) and \((0,1]\) are endowed with the standard distance \( d(x,y) = |x - y| \). This distance induces the metric topologies \( \mathcal{T} \) and \( \mathcal{T}' \) respectively, where:
+\begin{itemize}
+    \item \( X = [1,\infty) \) is endowed with topology \( \mathcal{T} \).
+    \item \( Y = (0,1] \) is endowed with topology \( \mathcal{T}' \).
+\end{itemize}
+
+\begin{itemize}
+    \item The space \( [1,\infty) \) is complete: any Cauchy sequence is convergent within the space.
+    \item The space \( (0,1] \) is \textbf{not} complete: the sequence \( \left\{ \frac{1}{n} \right\}_{n \in \mathbb{N}} \) is a Cauchy sequence in \( (0,1] \), but it does not converge within \( (0,1] \).
+\end{itemize}
+\end{example}
+
+\note{
+A function is non-injective (not 1-to-1) if different elements in the domain map to the same element in the codomain. Here are two examples:
+\begin{enumerate}
+    \item The squaring function \( f: \mathbb{R} \to \mathbb{R} \), defined by \( f(x) = x^2 \), is not injective because \( f(1) = f(-1) = 1 \).
+    \item The sine function \( g: \mathbb{R} \to [-1,1] \), defined by \( g(x) = \sin(x) \), is not injective since \( g(x) = g(x + 2\pi) \) for all \( x \in \mathbb{R} \).
+\end{enumerate}
+}
+
+
+\begin{theorem}
+Let \( A: X \to Y \) be a continuous mapping between topological spaces \( X \) and \( Y \), and let \( S \) be a compact subset of \( X \). Then \( A(S) \) is a compact subset of \( Y \).
+\end{theorem}
+
+\begin{proof}
+For the proof, let \( \mathcal{V} \) be an open covering of \( A(S) \). Since \( A \) is continuous, \( A^{-1}(V) \) is an open set in \( X \), for each \( V \in \mathcal{V} \). We will show that \( \mathcal{U} = \{ A^{-1}(V) : V \in \mathcal{V} \} \) is an open covering of \( S \). If \( x \in S \), then \( Ax \in A(S) \) so that \( Ax \in V \) for some \( V \in \mathcal{V} \). Then \( x \in A^{-1}(V) \). So indeed \( \mathcal{U} \) is an open covering of \( S \). Since \( S \) is compact, there is a finite subcovering \( \{ A^{-1}(V_1), A^{-1}(V_2), \ldots, A^{-1}(V_n) \} \), say, chosen from \( \mathcal{U} \). If \( y \in A(S) \), then \( y = Ax \) for some \( x \in S \), and \( x \in A^{-1}(V_k) \) for some \( k = 1, 2, \ldots, n \). Then \( Ax = y \in V_k \). This shows that \( \{ V_1, V_2, \ldots, V_n \} \) is a finite subcovering of \( A(S) \), chosen from \( \mathcal{V} \). Hence \( A(S) \) is compact.
+\end{proof}
+
+
+
+\begin{theorem}[Compact-Hausdorff Homeomorphism]
+Let \((X,\mathcal{T})\) and \((Y,\mathcal{T}')\) be topological spaces. Assume that:
+\begin{itemize}
+    \item \(X\) is compact,
+    \item \(Y\) is Hausdorff, i.e., \(\forall x, y \in Y\) there exist neighbourhoods \(U\) of \(x\) and \(V\) of \(y\) such that \(U \cap V = \emptyset\).
+\end{itemize}
+If \(A: X \to Y\) is a continuous bijection, then \(A\) is a homeomorphism.
+\end{theorem}
+
+\begin{proof}
+We have to show that \(A^{-1}\) is continuous, i.e., \((A^{-1})^{-1}(T) \in \mathcal{T}\) for any \(T \in \mathcal{T}\). Recall \(A^{-1}: Y \to X\) (by Theorem 5.5.1).
+Let \(T \subseteq X\) be an open set. We have to prove that \(A(T)\) is open in \(Y\). Then \(T^c\) is a closed set in \(X\). Moreover, since \(T^c\) is a subset of \(X\), which is compact by our hypothesis, by Lemma 1, \(T^c\) is compact.
+By Theorem 5.5.2, \(A(T^c)\) is compact in \(Y\). Recall Theorem 5.3.3: In a Hausdorff space, any compact set is closed. Since \(Y\) is Hausdorff, by Theorem 5.5.2, \(A(T^c)\) is closed in \(Y\).
+Hence \(\sim A(T^c)\), which is \(A(T)\), is open in \(Y\). This is because \(A\) is a bijection, i.e., \(A(T)^c = A(T^c)\).
+Use Theorem 5.4.2(d), which states that for any function \(f\), we have \(f^{-1}(D)^c = f^{-1}(D^c)\). We apply this theorem with \(f = A^{-1}\) and \(D = T^c\).
+This proves that \(A(T)\) is open.
+\end{proof}
+
+\begin{lemma}[Closed Subset Compactness]
+In any topological space \((X,\mathcal{T})\), any closed subset of a compact set is compact.
+\end{lemma}
+\begin{proof}
+    Let \( S \subseteq X \) be a compact set and \( T \subseteq S \) be a closed set. We have to prove that \( T \) is compact.
+    Let \( \mathcal{V} \) be an open covering of \( T \), i.e., 
+\[ T \subseteq \bigcup_{V \in \mathcal{V}} V \quad \text{and} \quad V \in \mathcal{V}. \]
+Note that 
+\[ S = S \times X = T \cup T^c = \bigg(\bigcup_{V \in \mathcal{V}} V\bigg) \cup T^c, \]
+where \( T^c \) is the complement of \( T \) in \( S \) and is open since \( T \) is closed.
+So \( \mathcal{V} \cup \{T^c\} \) is an open covering of \( S \). Since \( S \) is compact, there exists a finite subcovering \( \{T_1, \ldots, T_n\} \) of \( S \), chosen from \( \mathcal{V} \cup \{T^c\} \).
+We have two cases:
+\begin{enumerate}
+    \item[a)] If the list \( T_1, \ldots, T_n \) does not include \( T^c \), then \( T_i \in \mathcal{V} \) for \( i = 1, \ldots, n \) and 
+    \[ T \subseteq S \subseteq \bigcup_{i=1}^{n} T_i; \]
+    so \( \{T_1, \ldots, T_n\} \) is a finite subcovering of \( T \), with sets chosen from \( \mathcal{V} \).
+    \item[b)] If \( T^c = T_n \) for some \( i = 1, \ldots, n \), say \( T^c = T_n \), then 
+    \[ T \subseteq S \subseteq \bigg(\bigcup_{i=1}^{n-1} T_i\bigg) \cup T^c, \]
+    which implies that 
+    \[ T \subseteq \bigg(\bigcup_{i=1}^{n-1} T_i\bigg); \]
+    so \( \{T_1, \ldots, T_{n-1}\} \) is a finite subcovering of \( T \), with sets chosen from \( \mathcal{V} \).
+\end{enumerate}
+
+\end{proof}
+

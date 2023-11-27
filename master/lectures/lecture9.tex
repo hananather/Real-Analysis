@@ -1,0 +1,52 @@
+\newpage
+\section{October 12, 2023}
+\subsection{Compactness Theorems}
+\begin{itemize}
+    \item A set $S \subset X$ is sequentially compact if 
+    for all sequences $\{ x_n \} \subset S$ there exists sub sequence $\{x_{n_k}\}_k$ such that $x_{n_k} \to x \in S$ as $ k \to \infty$ 
+    \item If $x$ is a sequentially compact then it is complete
+    \item If $S \subset X$ is sequentially compact then $S$ is sequentially closed.
+    \item If $S \subset X$ is sequentially compact the $S$ is bounded 
+\end{itemize}
+\subsection{Arzelà–Ascoli Theorem}
+Next we turn to the compact sets of $C[a,b]$.
+The motivation for the Arzelà–Ascoli theorem is that it gives us the necessary and sufficient conditions to decide weather every sequence of a family real-valued continuous functions defined on a closed and bounded interval has uniformly convergent subsequences. 
+
+\begin{definition}
+    Let $F$ be a family (or set) of functions, each with domain $D$.
+    \begin{itemize}
+        \item We say that $F$ is uniformly bounded on $D$ if there is a positive number $M$ such that $|f(x)| \leq M$ for all $f \in F$ and $x \in D$.
+        \item We say that $F$ is equicontinuous on $D$ if, given any number $\eps > 0$, there exists a number  $\delta$, for any $f \in F$
+        $$
+        |f(x') -f(x'') | < \eps, \quad \text{whenever } x', x'' \in D
+        \text{ and } |x' - x''| < \delta
+        $$
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}[Arzelà–Ascoli theorem]
+    A subset $F$ of metric space $C[a,b]$ is compact if $F$ is closed, uniformly bounded, and equicontinuous. 
+\end{theorem}
+A simple sufficinent condition for a family  of functions to be equicontinuous is that all functions of the family satisfy Liptschitz condition with the same Liptschitz constant.
+A family $F \subset C[a,b]$ is equicontinious if $\exists K >0$ such that
+$$
+|f(x) - f(x')| \leq K|x' - x|, \quad \forall x, x' \in [a,b], \quad \forall f \in F
+$$
+
+\subsection{Application to approximation theory}
+\begin{theorem}
+    Let $A:X \to Y$ be a continuous mapping between metric spaces $X$ and $Y$, and let $S$ be a non-empty compact subset of $X$. Then the image $A(S)$ is compact subset of $Y$.
+    \footnote{This theorem basically says that image under continuous mapping of a compact set is again a compact set}
+\end{theorem}
+\begin{proof}
+    Let $\{y_n\}$ be a sequence in $A(S)$. For each $n \in \NN$, there is at least one point $w \in S$ such that $Aw = y_n$. Choose one and call it $x_n$. Then $x_n$ is a sequence in $S$ and $Ax_n = y_n$. Since $S$ is compact, $\{x_n\}$ has a convergent subsequence $\{x_{n_k} \}$, with limit $x$. Then $x \in S$, so $Ax \in A(S)$. Now, $A_{n_k} = y_{n_k}$ and $Ax_{n_k} \to Ax$ since $A$ is continuous, so $\{ y_{n_k} \}$ is a convergent subsequence of $\{ y_n \}$.
+    Hence, $A(S)$ is compact.
+\end{proof}
+
+\begin{theorem}
+    If $f$ is a real-valued continuous function mapping on metric space $X$ and $S$ is any nonempty compact set in $X$, then there exist points $x_{M}$ and $x_{m}$ in $S$ such that 
+    $$
+    f(x_M) = \max_{s \in S} f(x) \quad \text{and} \quad f(x_m) = \min_{s \in S} f(x)
+    $$
+\end{theorem}
+
