@@ -1,3 +1,11 @@
+\begin{abstract}
+    \note{
+    These notes were created during my review process to aid my own understanding and not written for the purpose of instruction.
+    I originally wrote them only for myself, and they may contain typos and errors\footnote{Any corrections are greatly appreciated.}.
+    \textit{No professor has verified or confirmed the accuracy of these notes.}
+    With that said, I've decided to share these notes on the off chance they are helpful to anyone else.} 
+\end{abstract}
+
 \section{September 7, 2023}
 \begin{definition}[Metric Space]
     A metric space is a nonempty set \( X \) together with a mapping \( d: X \times X \rightarrow \mathbb{R}^+ = [ 0, \infty) \) with the properties:
@@ -95,11 +103,10 @@ To prove that \( d(x, y) \) is a metric, we need to verify that it satisfies the
     d(x, y) = \sqrt{\sum_{k=1}^{n} (x_k - y_k)^2},
     \]
     where \(x = (x_1, x_2, \ldots, x_n)\) and \(y = (y_1, y_2, \ldots, y_n)\).
-
-    This mapping \(d\) is commonly known as the \textit{Euclidean metric} for such a set \(X\). Henceforth, when we refer to the metric space \(\mathbb{R}^n\) (as opposed to merely the set \(\mathbb{R}^n\)), we imply that the metric space \((X, d)\) of this example is being considered with \(X = \mathbb{R}^n\). In other words, any reference to the metric space \(\mathbb{R}^n\) will always imply that the Euclidean metric is being used. The term \textit{Euclidean space} is often used synonymously with the metric space \(\mathbb{R}^n\).
-
+\note{
+    This mapping \(d\) is commonly known as the \textit{Euclidean metric} for such a set \(X\). Henceforth, when we refer to the metric space \(\mathbb{R}^n\) (as opposed to merely the set \(\mathbb{R}^n\)), we imply that the metric space \((X, d)\) of this example is being considered with \(X = \mathbb{R}^n\). In other words, any reference to the metric space \(\mathbb{R}^n\) will always imply that the Euclidean metric is being used.}
 \end{example}
-
+The term \textit{Euclidean space} is often used synonymously with the metric space \(\mathbb{R}^n\).
 \begin{theorem}[Cauchy-Schwarz Inequality]
     For any points \( \mathbf{a} = (a_1, a_2, \ldots, a_n) \) and \( \mathbf{b} = (b_1, b_2, \ldots, b_n) \) in \( \mathbb{R}^n \), the following inequality holds:
     \[

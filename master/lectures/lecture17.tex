@@ -24,7 +24,31 @@ This convergence behavior is directly related to the nature of the \(\infty\)-no
     \]
     Then, \( Q \) is a compact set in \( V \) (when \( V \) is equipped with the \(\infty\)-norm).
 \end{theorem}
+\begin{proof}
+    \term{Not required for final} \\
+We assume \( V \) is a complex vector space (the case of a real vector space is almost identical). We prove the result by induction on the dimension \( n \) of \( V \). First suppose that \( n = 1 \) and that \( \{v\} \) is a basis of \( V \). Let
+\[ Z = \{a \in \mathbb{C} \mid |a| \leq 1\} = B_{\mathbb{C}}(0,1), \]
+which we know is compact in \( \mathbb{C} \) (it is a closed and bounded subset of \( \mathbb{C} \), which is the same as \( \mathbb{R}^2 \) topologically). Define
+\[ A: Z \to V, \quad Av = av. \]
+Then \( A(Z) = B_V(0,1) \). Since the continuous image of a compact set is compact (Theorem 4.4.7), it suffices to show that \( A \) is continuous. Suppose \( \{a_m\} \) is a sequence in \( Z \) converging to \( a \in Z \). Then
+\[ \lVert Aa_m - Aa \rVert_{\infty} = \lVert (a_m - a)v \rVert_{\infty} = |a_m - a| \to 0. \]
+Hence \( Aa_m \to Aa \) and so \( A \) is continuous.
 
+Now assume the proposition is true for \( n < h - 1 \) for some \( h > 1 \). We want to show that it is true for \( n = h \). Let
+\[ B_i = B_{V}(0,1) \]
+when \( n = i \), \( i \in \mathbb{N}_+ \). So our inductive assumption is that \( B_{n} \) is compact for \( n < h - 1 \) and we wish to show that \( B_h \) is compact.
+
+Let \( \{x_m\} \) be a sequence in \( B_h \) and let
+\[ x_m = \sum_{j=1}^{h} \alpha_{mj}v_j \]
+for \( m \in \mathbb{N}_+ \). The sequence \( \{\alpha_{m1}v_1\}_{m=1}^{\infty} \) is a sequence in \( B_1 \), which is compact. Therefore, it has a convergent subsequence \( \{\alpha_{mk_1}v_1\}_{k=1}^{\infty} \). So
+\[ \left\{ \sum_{j=2}^{h} \alpha_{mk,j}v_j \right\}_{k=1}^{\infty} \]
+is a subsequence of \( \{x_m\} \) such that the sequence of coefficients of \( v_1 \) converges. Then
+\[ \left\{ \sum_{j=2}^{h} \alpha_{mk,j}v_j \right\}_{k=1}^{\infty} \tag{5.1} \]
+is a sequence in \( \text{Span}\{v_2, \ldots, v_h\} \), which is a vector space of dimension \( h - 1 \). Since, for \( k \in \mathbb{N}_+ \),
+\[ \left\lVert \sum_{j=2}^{h} \alpha_{mk,j}v_j \right\rVert_{\infty} = \max_{2 \leq j \leq h} |\alpha_{mk,j}| \leq \max_{1 \leq j \leq h} |\alpha_{mk,j}| = \lVert x_{mk} \rVert_{\infty} \leq 1, \]
+it is a sequence in \( B_{h-1} \). Since \( B_{h-1} \) is compact by the inductive hypothesis, the sequence (5.1) has a convergent subsequence. By Theorem 5.3.2, this subsequence converges componentwise. Therefore the corresponding subsequence of \( \{x_m\} \) also converges componentwise (since we had already chosen a subsequence in which the first component converged) and hence converges.
+
+\end{proof}
 
 \begin{definition}[Equivalent Norms]
     Two norms \( || \cdot ||_1 \) and \( || \cdot ||_2 \) on a vector space \( V \) are said to be \textit{equivalent} if there exist constants \( a, b > 0 \) such that for all \( x \in V \),
@@ -41,10 +65,65 @@ This convergence behavior is directly related to the nature of the \(\infty\)-no
     \]\footnote{
     This implies that all norms on a finite-dimensional vector space induce the same topological structure, meaning that notions of convergence, continuity, and compactness are the same under any norm.}
 \end{theorem}
+\begin{proof}
+We will only prove that any norm \( \|\cdot\| \) for our vector space \( V \) is equivalent to the norm \( \|\cdot\|_{\infty} \). That is, we will show that there exist positive numbers \( a \) and \( b \) such that
+\[
+a\|x\|_{\infty} \leq \|x\| \leq b\|x\|_{\infty}
+\]
+for any \( x \in V \). This readily implies the theorem, but the details are left as an exercise.
+
+In Theorem 6.5.1, we showed that the subset \( Q = \{x : \|x\|_{\infty} \leq 1\} \) of \( V \) is compact. It is another simple exercise to use this fact, in conjunction with Exercise 4.5(3), to conclude that the set \( Q' = \{x : \|x\|_{\infty} = 1\} \) in \( V \) is also compact. On any normed space, the norm is a continuous mapping (Exercise 6.4(3)(c)) so we may invoke Theorem 4.3.2 to ensure the existence of points \( x_M \) and \( x_m \) in \( Q' \) such that
+\[
+\|x_M\| = \max_{x \in Q'} \|x\|, \quad \|x_m\| = \min_{x \in Q'} \|x\|.
+\]
+Thus \( \|x_m\| \leq \|x\| \leq \|x_M\| \) for all \( x \in Q' \). Also, since \( \|x_m\|_{\infty} = 1 \), we cannot have \( x_m = 0 \), so \( \|x_m\| > 0 \). For any nonzero vector \( x \in V \), we have
+\[
+\frac{1}{\|x\|_{\infty}} x = \frac{1}{\|x\|_{\infty}} x \in Q'.
+\]
+Hence, for \( x \neq 0 \),
+\[
+\|x_m\| \leq \left\|\frac{1}{\|x\|_{\infty}} x\right\| \leq \|x_M\|.
+\]
+We thus have
+\[
+\|x_m\| \|x\|_{\infty} \leq \|x\| \leq \|x_M\| \|x\|_{\infty},
+\]
+or
+\[
+a\|x\|_{\infty} \leq \|x\| \leq b\|x\|_{\infty},
+\]
+where \( a = \|x_m\| > 0 \) and \( b = \|x_M\| \), and this is clearly true also when \( x = 0 \). Hence the norms \( \|\cdot\| \) and \( \|\cdot\|_{\infty} \) are equivalent.
+\end{proof}
+
 
 \begin{theorem}[Finite-Dimensional Spaces are Banach Spaces]
     Every finite-dimensional normed vector space is a Banach space. That is, if \( V \) is a vector space of finite dimension \( n \) equipped with any norm \( ||\cdot|| \), then \( V \) is complete with respect to this norm. In other words, every Cauchy sequence in \( V \) converges to an element in \( V \).
 \end{theorem}
+
+\begin{proof}
+Let \( V \) be a finite-dimensional vector space with basis \( \{v_1, \ldots, v_n\} \). By Theorem 6.5.3, all norms are equivalent. So, it is enough to prove that \( (V, \|\cdot\|_{\infty}) \) is a Banach space. Let \( \{x_m\} \) be a Cauchy sequence in \( V \) with respect to \( \|\cdot\|_{\infty} \). Then
+\[ 
+x_m = \sum_{k=1}^{n} \alpha_{mk} v_k \text{ with } \alpha_{mk} \text{ scalars}.
+\]
+For any \( \varepsilon > 0 \), there exists \( N \in \mathbb{N} \) such that
+\[
+\|x_m - x_j\|_{\infty} < \varepsilon \text{ for all } m,j > N.
+\]
+Note that \( x_m - x_j = \sum_{k=1}^{n} \alpha_{mk} v_k - \sum_{k=1}^{n} \alpha_{jk} v_k = \sum_{k=1}^{n} (\alpha_{mk} - \alpha_{jk}) v_k \), and hence
+\[
+\|x_m - x_j\|_{\infty} = \max_{1 \leq k \leq n} |\alpha_{mk} - \alpha_{jk}| < \varepsilon \text{ for all } m,j > N.
+\]
+This means that for all \( k=1, \ldots, n \) fixed,
+\[
+|\alpha_{mk} - \alpha_{jk}| < \varepsilon \text{ for all } m,j > N.
+\]
+Hence, \( \{\alpha_{mk}\}_{m \in \mathbb{N}} \) is a Cauchy sequence in \( \mathbb{F} \) (where \( \mathbb{F} = \mathbb{R} \) or \( \mathbb{F} = \mathbb{C} \)). Since \( \mathbb{F} \) is complete, there exists \( \alpha_k \in \mathbb{F} \) such that
+\[
+\alpha_{mk} \rightarrow \alpha_k \text{ as } m \rightarrow \infty, \text{ for } k=1, \ldots, n.
+\]
+By Lemma 1, we have that \( x_m \rightarrow x \) in \( (V, \|\cdot\|_{\infty}) \) where \( x = \sum_{k=1}^{n} \alpha_k v_k \).
+Hence \( \{x_m\} \) converges in \( (V, \|\cdot\|_{\infty}) \). This proves that \( (V, \|\cdot\|_{\infty}) \) is a complete space.
+\end{proof}
 This theorem is significant because it ensures that many of the convenient properties of finite-dimensional spaces (like
 $\RR^n$) hold more generally in any space with a finite number of dimensions, regardless of the specific norm used. It's a fundamental difference between finite-dimensional and infinite-dimensional spaces, where completeness is not guaranteed and depends heavily on the chosen norm.
 

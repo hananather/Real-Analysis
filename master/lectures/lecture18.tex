@@ -1,0 +1,77 @@
+\newpage
+\section{November 23, 2023}
+
+
+\begin{theorem}[6.6.1]
+Let \( X \) be a normed vector space and \( S \subset X \) a finite-dimensional subspace, \( S \neq \varnothing \). Fix \( x \in X \). Then there exists \( p \in S \) such that
+\[ \|p - x\| = \min_{y \in S} \|y - x\|. \]
+\end{theorem}
+
+\begin{proof}
+Let \( p_0 \in S \) be arbitrary. We consider the following subset of \( S \):
+\[ Y = \{ y \in S; \|y - x\| \leq \|p_0 - x\| \}. \]
+We claim that \( Y \neq \varnothing \). Assume that \( Y = \varnothing \). Then \( \|y - x\| > \|p_0 - x\| \) for all \( y \in S \) which is a contradiction since \( p_0 \in S \). Thus, there exists \( p \in Y \) such that
+\[ \|p - x\| = \min_{y \in Y} \|y - x\|. \]
+
+To prove that \( Y \) is compact, we need to show that \( Y \) is closed and bounded. Recall from Theorem 6.5.5 that a subset of any finite-dimensional vector space is compact if it is closed and bounded.
+
+\textbf{Y is closed:} Let \( \{y_k\} \subset Y \) be such that \( y_k \to y \). We have to prove that \( y \in Y \). For any \( \varepsilon > 0 \), there exists \( N \) such that for all \( k > N \),
+\[ \|y_k - x\| < \|p_0 - x\| + \varepsilon. \]
+Since \( \varepsilon \) is arbitrary, we must have \( \|y - x\| \leq \|p_0 - x\|. \) Hence \( y \in Y \).
+
+\textbf{Y is bounded:} For all \( y \in Y \),
+\[ \|y\| = \|y - x + x\| \leq \|y - x\| + \|x\| \leq \|p_0 - x\| + \|x\| := M. \]
+Hence \( Y \subset B(0, M) \) where \( B(0, M) \) is the closed ball centered at the origin with radius \( M \).
+
+By Theorem 4.3.3, \( Y \) is compact. Therefore, the set \( Y \) is closed and bounded, and by the previous argument, contains the point \( p \) which minimizes the distance to \( x \). This completes the proof.
+\end{proof}
+
+\begin{definition}[6.6.2]
+A normed vector space \( X \) is strictly convex if the equation
+\[ \|x + y\| = \|x\| + \|y\| \]
+holds only when \( x = \beta y \) for some \( \beta > 0 \) and \( x, y \in X \setminus \{0\} \).
+\end{definition}
+
+Note: If \( x = \beta y \) then
+\[ \|x + y\| = \|\beta y + y\| = \|(\beta + 1)y\| = (\beta + 1)\|y\| = \beta \|y\| + \|y\| = \|x\| + \|y\|. \]
+
+\begin{moral}
+    This illustrates that in a strictly convex space, the triangle inequality becomes an equality if and only if the vectors are linearly dependent and pointing in the same direction.
+\end{moral}
+
+
+
+\begin{enumerate}
+    \item[a)] The space \( C[a,b] \) endowed with the norm 
+    \[ \|f\|_2 = \left( \int_a^b |f(t)|^2 dt \right)^{\frac{1}{2}} \]
+    is strictly convex (see Exercise 6.10.(5), Assignment 4).
+    \item[b)] The space \( C[a,b] \) endowed with the uniform norm
+    \[ \|f\| = \max_{t \in [a,b]} |f(t)| \]
+    is \textbf{not} strictly convex.
+\end{enumerate}
+Here is an example: let \( f(t) = bt \) and \( g(t) = t^2 \) for \( t \in [a,b] \). Assume \( 0 < a < b \).
+\[ \|f\| = \max_{t \in [a,b]} |bt| = b \cdot \max_{t \in [a,b]} t = b^2 \]
+\[ \|g\| = \max_{t \in [a,b]} |t^2| = b^2 \]
+\[ \|f + g\| = \max_{t \in [a,b]} |bt + t^2| = \max_{t \in [a,b]} |t(b + t)| = b^2 + b^3 = 2b^2 = \|f\| + \|g\| \]
+Hence, condition (2) holds. But \( f \neq \beta g \) for some \( \beta > 0 \).
+
+\begin{theorem}[6.6.3]
+Let \( X \) be a strictly convex normed vector space, and \( S \subseteq X \) a finite-dimensional subspace, \( S \neq \varnothing \). Fix \( x \in X \). Then, there exists a unique \( p \in S \) such that
+\[ \|p - x\| = \min_{y \in S} \|y - x\|. \]
+\end{theorem}
+
+\begin{proof}
+\textbf{Case 1:} \( x \in S \). Then \( \min_{y \in S} \|y - x\| = \|x - x\| = 0 \), so the minimum is achieved for \( p = x \), which is unique.
+
+\textbf{Case 2:} \( x \not\in S \). The existence of \( p \) is given by Theorem 6.6.1. Assume that there exists another point \( p' \in S \) such that 
+\[ \|p' - x\| = \|p - x\| = \min_{y \in S} \|y - x\| =: d. \]
+Now, since \( S \) is a vector space, \( \frac{1}{2}(p + p') \in S \) and
+\[ d \leq \|x - \frac{1}{2}(p + p')\| = \frac{1}{2} \|x - p\| + \frac{1}{2} \|x - p'\| \leq \frac{1}{2} \|x - p\| + \frac{1}{2} \|x - p'\| = d. \]
+Hence \( \|x - \frac{1}{2}(p + p')\| = d \) so \( \frac{1}{2}(p + p') \) is also a best approximation of \( x \). (This averaging process can be continued indefinitely to show the existence of infinitely many best approximations in a normed space once there are two different best approximations.) It follows that
+\[ \|x - \frac{1}{2}(p + p')\| = \frac{1}{2} \|x - p\| + \frac{1}{2} \|x - p'\|, \]
+from which, since \( X \) is strictly convex,
+\[ x - p = \beta(x - p') \]
+for some number \( \beta > 0 \). If \( \beta \neq 1 \), we get
+\[ x = \frac{1}{1 - \beta} p - \frac{\beta}{1 - \beta} p'. \]
+This is impossible since it represents \( x \) as belonging to the vector space \( S \), whereas \( x \not\in S \). So we must have \( \beta = 1 \). Thus \( p = p' \) and we have proved that the best approximation is unique.
+\end{proof}

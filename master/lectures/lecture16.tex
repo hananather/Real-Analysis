@@ -1,7 +1,142 @@
 \newpage
 \section{November 13, 2023}
-\section{Connectedness}
+\subsection{Connectedness}
 
 \begin{definition}[Disjoint]
     Two sets \( A \) and \( B \) are said to be \textit{disjoint} if \( A \cap B = \emptyset \). We sometimes write \( A \sqcup B \) for the union of \( A \) and \( B \) when these sets are disjoint. So the statement `\( X = A \sqcup B \)' means that \( X = A \cup B \) and \( A \cap B = \emptyset \).
 \end{definition}
+
+
+\begin{definition}[Separation, connected, disconnected]
+Let \((X, \mathcal{T})\) be a topological space.
+    \begin{itemize}
+        \item[a)] A \emph{separation} (or \emph{partition}) of a subset \( S \subseteq X \) is a pair \((T_1, T_2)\) of nonempty, disjoint open sets in \(X\) such that:
+        \begin{enumerate}
+            \item[(i)] \(T_1 \cap S \neq \emptyset\) and \(T_2 \cap S \neq \emptyset\),
+            \item[(ii)] \(S = (T_1 \cap S) \cup (T_2 \cap S)\) \footnote{\(S \subseteq T_1 \cup T_2\) and \(T_1 \cap T_2 \cap S = \emptyset\).}
+        \end{enumerate}
+        \item[b)] A set \( S \) is \emph{disconnected} if it has a separation.
+        \item[c)] A set \( S \) is \emph{connected} if it has no separation.
+    \end{itemize}
+\end{definition}
+
+
+\begin{enumerate}[(a)]
+    \item Assume \( S = X \). Then a separation of \( X \) is a pair \( (T_1, T_2) \) of disjoint open sets such that \( X = T_1 \cup T_2 \), \( T_1 \neq \emptyset \), \( T_2 \neq \emptyset \). X is connected if it cannot be written as \( X = T_1 \cup T_2 \) with \( T_1, T_2 \) open, disjoint, non-empty.
+    Note that \( T_1 = T_2^c \) is a closed set (since it is the complement of an open set) and \( T_2 = T_1^c \) is a closed set. X is disconnected \( \Leftrightarrow \) there exists a subset \( T_1 \) of \( X \) which is both open and closed (hence \( T_2 = T_1^c \); then \( X = T_1 \cup T_2 \)). X is connected \( \Leftrightarrow \) \( \emptyset \) and \( X \) are the only subsets of \( X \) which are both open and closed.
+    \item In any topological space \( (X, \mathcal{T}) \), \( \{x\} \) is connected, for any \( x \in X \).
+\end{enumerate}
+
+\begin{theorem}[Continuous Image Connectedness Theorem]
+Let \( A: X \rightarrow Y \) be a continuous mapping between topological spaces. If \( S \) is a connected subset of \( X \) then \( A(S) \) is a connected subset of \( Y \).
+\end{theorem}
+
+\begin{proof}
+To prove this, suppose there exists a separation \( (T_1, T_2) \) of \( A(S) \). Then we will show that \( (S_1, S_2) \), where \( S_1 = A^{-1}(T_1) \) and \( S_2 = A^{-1}(T_2) \), is a separation of \( S \), contradicting the fact that \( S \) is connected. Certainly, \( S_1 \) and \( S_2 \) are open sets in \( X \), since \( T_1 \) and \( T_2 \) are open in \( Y \) and \( A \) is continuous. If \( x \in S_1 \cap S_2 \), then we easily see that \( Ax \in T_1 \cap T_2 \). But \( T_1 \cap T_2 = \emptyset \), so \( S_1 \cap S_2 = \emptyset \). We know that \( T_1 \cap A(S) \neq \emptyset \). Take any point \( y \in T_1 \cap A(S) \) and say \( y = Ax \). Then \( x \in A^{-1}(T_1) = S_1 \) and \( x \in S \), so \( S_1 \cap S \neq \emptyset \), and similarly \( S_2 \cap S \neq \emptyset \). Finally, suppose \( x \in S \), so that \( Ax \in A(S) = (T_1 \cap A(S)) \cup (T_2 \cap A(S)) \). If \( Ax \in T_1 \cap A(S) \) then \( x \in A^{-1}(T_1 \cap A(S)) = A^{-1}(T_1) \cap A^{-1}(A(S)) \), by Theorem 5.4.2(c). In particular, \( x \in A^{-1}(T_1) = S_1 \), so \( x \in S_1 \cap S \). If \( Ax \in T_2 \cap A(S) \), then we proceed similarly, and conclude that \( x \in (S_1 \cap S) \cup (S_2 \cap S) \), so that \( S \subseteq (S_1 \cap S) \cup (S_2 \cap S) \). The reverse inclusion is obvious, so \( S = (S_1 \cap S) \cup (S_2 \cap S) \). We have shown that \( (S_1, S_2) \) is a separation of \( S \), as required.
+\end{proof}
+
+\subsection{Finite-dimensional normed vector spaces}
+\begin{definition}[Vector Space Terminology]
+Let \( V \) be a vector space over the field \( \mathbb{F} \) (where \( \mathbb{F} = \mathbb{R} \) or \( \mathbb{F} = \mathbb{C} \)), and let \( \{v_1, v_2, \dots, v_n\} \) be a subset of \( V \).
+    \begin{enumerate}
+        \item[(a)] A \emph{linear combination} of \( v_1, v_2, \dots, v_n \) is a vector \( x \) of the form:
+        \[
+        x = \sum_{k=1}^{n} \alpha_k v_k,
+        \]
+        where \( \alpha_1, \alpha_2, \dots, \alpha_n \in \mathbb{F} \). The scalars \( \alpha_k \) are called the \emph{coefficients} of \( v_k \), for \( k = 1, 2, \dots, n \).
+
+        \item[(b)] The set \( \{v_1, v_2, \dots, v_n\} \) is \emph{linearly independent} if the only scalars \( \alpha_1, \alpha_2, \dots, \alpha_n \) for which
+        \[
+        \sum_{k=1}^{n} \alpha_k v_k = 0
+        \]
+        are \( \alpha_1 = \alpha_2 = \dots = \alpha_n = 0 \). If there exists a non-trivial combination (i.e., not all \( \alpha_k \) are zero) that sums to the zero vector, then the set is \emph{linearly dependent}.
+
+        \item[(c)] The \emph{span} of \( \{v_1, v_2, \dots, v_n\} \), denoted by \( \text{Sp}\{v_1, v_2, \dots, v_n\} \), is the set of all linear combinations of \( v_1, v_2, \dots, v_n \) and is a subspace of \( V \) called the \emph{subspace spanned (or generated)} by \( v_1, v_2, \dots, v_n \).
+
+        \item[(d)] The set \( \{v_1, v_2, \dots, v_n\} \) is a \emph{basis} for \( V \) if it is linearly independent and spans \( V \), i.e., \( \text{Sp}\{v_1, v_2, \dots, v_n\} = V \). The vector space \( V \) is then said to be \emph{finite-dimensional} with \emph{dimension} \( n \). If there does not exist any finite set that is a basis for \( V \), then \( V \) is \emph{infinite-dimensional}.
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+Consider the vector space \( V = \mathbb{R}^n \). The \( k \)-th standard basis vector is denoted by \( e_k \) and is defined as the vector in \( \mathbb{R}^n \) that has a 1 in the \( k \)-th position and 0's elsewhere, that is,
+\[ e_k = (0, \ldots, 0, 1, 0, \ldots, 0), \]
+where the 1 is in the \( k \)-th position. The set of vectors \( \{e_1, \ldots, e_n\} \), where each \( e_k \) is a standard basis vector, forms a basis for \( V \). This set is linearly independent, and every vector in \( V \) can be uniquely expressed as a linear combination of these basis vectors. Therefore, \( \{e_1, \ldots, e_n\} \) is called the standard basis of \( \mathbb{R}^n \).
+\end{example}
+
+\begin{theorem}[Infinite-Dimensional Subspace Theorem]
+A vector space is infinite-dimensional if it has an infinite-dimensional subspace. 
+\end{theorem}
+\begin{proof}
+    Let \( W \) be an infinite-dimensional subspace of a vector space \( V \), and suppose that \( V \) is finite-dimensional, with dimension \( n \), say. By what was just said, there exists a set of \( n \) linearly independent vectors in \( W \), which, since they belong also to \( V \), must be a basis for \( V \). Every vector in \( V \), which includes all those in \( W \), is expressible as a linear combination of these basis vectors, so they span \( W \). Hence that set of \( n \) vectors is also a basis for \( W \), contradicting the fact that \( W \) is infinite-dimensional.
+\end{proof}
+
+\begin{proposition}
+    \( C[a,b] \) is infinite-dimensional. 
+\end{proposition}
+
+
+
+\begin{proof}
+The space \( P[a,b] \) of polynomial functions defined on \( [a,b] \) is infinite-dimensional. To see this, suppose by contradiction that \( \{v_1, \ldots, v_n\} \) is a basis for \( P[a,b] \). Let \( K = \max \{ \deg(v_i) \mid i = 1, \ldots, n \} \), where \( \deg(v_i) \) is the degree of polynomial \( v_i \). Then any polynomial with degree larger than \( K \) cannot be written as a linear combination of \( v_1, \ldots, v_n \). This contradicts the fact that \( \{v_1, \ldots, v_n\} \) is a basis for \( P[a,b] \). So \( P[a,b] \) is infinite-dimensional. By Theorem 1.11.4, \( C[a,b] \) is infinite-dimensional, since \( P[a,b] \) is a subspace of \( C[a,b] \).
+\end{proof}
+
+
+\begin{theorem}
+The map \( \|\cdot\|_{\infty}: V \rightarrow \mathbb{R}_+ \), given by
+\[
+\|x\|_{\infty} = \max_{1 \leq k \leq n} |\alpha_k|, \quad \text{where } x = \sum_{k=1}^{n} \alpha_k v_k \in V,
+\]
+is a norm on \( V \).
+\end{theorem}
+
+\begin{proof}
+We need to check axioms (N1)--(N3) in the definition of a normed space. Since \(\{v_1, \ldots, v_n\}\) is a basis of \( V \), \( \|\cdot\|_{\infty} \) is well-defined (since the \( \alpha_k \) are uniquely determined). For \( x = \sum_{k=1}^{n} \alpha_k v_k \), we clearly have
+\( x = 0 \) if and only if \( (\alpha_k = 0 \, \forall k) \) if and only if \( \|x\|_{\infty} = 0 \). So (N1) is satisfied.
+
+Now, for any scalar \( \alpha \), we have
+\[
+\|\alpha x\|_{\infty} = \left\| \sum_{k=1}^{n} (\alpha \alpha_k) v_k \right\|_{\infty} = \max_{1 \leq k \leq n} |\alpha \alpha_k| = |\alpha| \max_{1 \leq k \leq n} |\alpha_k| = |\alpha| \cdot \|x\|_{\infty}.
+\]
+Thus, (N2) is satisfied.
+
+Finally, we must prove the triangle inequality. Let \( y = \sum_{k=1}^{n} \beta_k v_k \) be a second vector in \( V \). For \( k = 1, \ldots, n \), we have
+\[
+|\alpha_k + \beta_k| \leq |\alpha_k| + |\beta_k| \leq \max_{1 \leq k \leq n} |\alpha_k| + \max_{1 \leq k \leq n} |\beta_k| = \|x\| + \|y\|.
+\]
+Therefore,
+\[
+\|x + y\|_{\infty} = \left\| \sum_{k=1}^{n} (\alpha_k + \beta_k) v_k \right\|_{\infty} = \max_{1 \leq k \leq n} |\alpha_k + \beta_k| \leq \|x\|_{\infty} + \|y\|_{\infty}.
+\]
+So (N3) is satisfied.
+\end{proof}
+
+
+\begin{theorem}
+Convergence in a finite-dimensional vector space with the norm \( \|\cdot\|_{\infty} \) is equivalent to componentwise convergence. In other words, if \( \{x_m\} \) is a sequence in a finite-dimensional vector space with this norm, and \( x_m = \sum_{k=1}^{n} \alpha_{mk}v_k \), then
+\[
+\{x_m\}_{m=1}^{\infty} \text{ converges} \iff \{\alpha_{mk}\}_{m=1}^{\infty} \text{ converges for each } k = 1, 2, \ldots, n.
+\]
+(Here the convergence of \( \{\alpha_{mk}\}_{m=1}^{\infty} \) is in \( \mathbb{R} \) or \( \mathbb{C} \).)
+\end{theorem}
+
+\begin{proof}
+Suppose \( x_m \to x \), with \( x = \sum_{k=1}^{n} \alpha_k v_k \). Then for all \( \varepsilon > 0 \), there exists an \( N > 0 \) such that
+\[
+m > N \implies \|x_m - x\|_{\infty} = \max_{1 \leq k \leq n} |\alpha_{mk} - \alpha_k| < \varepsilon.
+\]
+Therefore, for each \( k = 1, \ldots, n \),
+\[
+m > N \implies |\alpha_{mk} - \alpha_k| < \varepsilon.
+\]
+Thus, \( \{\alpha_{mk}\}_{m=1}^{\infty} \) converges to \( \alpha_k \) for each \( k = 1, 2, \ldots, n \).
+
+Now suppose that for each \( k = 1, 2, \ldots, n \), the sequence \( \{\alpha_{mk}\}_{m=1}^{\infty} \) converges to, say, \( \alpha_k \). Then for all \( \varepsilon > 0 \) and \( k = 1, 2, \ldots, n \), there exists an \( N_k \) such that
+\[
+m > N_k \implies |\alpha_{mk} - \alpha_k| < \varepsilon.
+\]
+Let \( N = \max\{N_1, \ldots, N_n\} \) and \( x = \sum_{k=1}^{n} \alpha_k v_k \). Then
+\[
+m > N \implies \|x_m - x\|_{\infty} = \max_{1 \leq k \leq n} |\alpha_{mk} - \alpha_k| < \varepsilon.
+\]
+Thus \( \{x_m\} \) converges to \( x \).
+\end{proof}
