@@ -1,5 +1,6 @@
 \newpage
 \section{November 27, 2023}
+
 \begin{definition}
     \ Let \( X, Y \) be normed vector spaces and \( S \subseteq X \) a subset. A map \( A: S \to Y \) is \emph{uniformly continuous} on \( S \) if for every \( \varepsilon > 0 \) there exists a \( \delta > 0 \) such that 
 
@@ -9,3 +10,102 @@
 \begin{theorem}
 Let \( X, Y \) be normed vector spaces and \( S \subseteq X \) a compact subset of \( X \), \( S \neq \emptyset \). If \( A: S \to Y \) is continuous on \( S \), then \( A \) is also uniformly continuous.
 \end{theorem}
+
+\begin{proof}
+Suppose that \( A \) is not uniformly continuous on \( S \). This means that there is some number \( \epsilon > 0 \) such that, regardless of the value of \( \delta \), there are points \( x', x'' \in S \) with \( \|x' - x''\| < \delta \) but for which \( \|Ax' - Ax''\| \geq \epsilon \). Take \( \delta = 1/n \), for \( n = 1, 2, \ldots \) in turn, and for each \( n \) let \( x'_n, x''_n \) be points in \( S \) (known to exist by our supposition) such that
+\[
+\|x'_n - x''_n\| < \frac{1}{n} \quad \text{and} \quad \|Ax'_n - Ax''_n\| \geq \epsilon.
+\]
+
+As \( S \) is compact, the sequence \( \{x'_n\} \) has a convergent subsequence \( \{x'_{n_k}\} \), with limit \( x \), say. Take any number \( \eta > 0 \). There exists a positive integer \( K \) such that \( \|x'_{n_k} - x\| < \eta/2 \) when \( k > K \). We may suppose \( K > 2/n \) for such \( k \), \( n_k \geq k > 2/n \) and
+\[
+\|x''_{n_k} - x\| \leq \|x''_{n_k} - x'_{n_k}\| + \|x'_{n_k} - x\| < \frac{1}{n_k} + \frac{\eta}{2} < \eta,
+\]
+so that \( \{x''_{n_k}\} \) is a convergent subsequence of \( \{x''_n\} \), also with limit \( x \). Further, the sequence \( Ax'_{n_1}, Ax''_{n_1}, Ax'_{n_2}, Ax''_{n_2}, \ldots \) in \( Y \) must converge with limit \( Ax \). Hence there is an integer \( N \) such that, when \( k > N \),
+\[
+\|Ax'_{n_k} - Ax''_{n_k}\| \leq \|Ax'_{n_k} - Ax\| + \|Ax''_{n_k} - Ax\| < \frac{\eta}{2} + \frac{\eta}{2} = \eta,
+\]
+and this gives us a contradiction. Thus \( A \) is indeed uniformly continuous on \( S \).
+\end{proof}
+
+\begin{corollary}
+Let \( X \) be a finite-dimensional normed vector space, and \( S \subseteq X \) be a closed and bounded subset of \( X \). Let \( Y \) be a normed vector space and \( A: S \to Y \). If \( A \) is continuous on \( S \) then \( A \) is also uniformly continuous on \( S \).
+\end{corollary}
+
+\begin{proof}
+By Theorem 6.5.5, \( S \) is compact. The conclusion follows from Theorem 6.8.2.
+\end{proof}
+
+\subsection{The Weierstrass approximation theorem}
+
+\begin{theorem}[Weierstrass Approximation Theorem]
+For any $f \in C[0,1]$ and for any $\epsilon > 0$, there exists a polynomial $p$ such that
+\[
+\|p - f\| < \epsilon, \quad \text{i.e. } |p(x) - f(x)| < \epsilon \quad \forall x \in [0,1].
+\]
+Recall: $\|f\| = \max_{x \in [0,1]} |f(x)|$ is the uniform norm on $C[0,1]$.
+\end{theorem}
+
+\begin{proof}
+    We define Bernstein polynomial for $f$, of degree $n$, by:
+\[
+P_n(x) = \sum_{k=0}^{n} \binom{n}{k} f\left(\frac{k}{n}\right) x^k (1 - x)^{n-k}
+\]
+Then
+\[
+f(x) = f(0) \cdot (1 - x)^n + \sum_{k=1}^{n-1} \binom{n}{k} f\left(\frac{k}{n}\right) x^k (1 - x)^{n-k} + f(1) \cdot x^n
+\]
+and
+\[
+|f(x) - P_n(x)| \leq \sum_{k=0}^{n} |f(x) - f\left(\frac{k}{n}\right)| \cdot \binom{n}{k} x^k (1 - x)^{n-k} \quad (5)
+\]
+Since $f$ is continuous on a compact interval, $f$ is uniformly continuous. Let $\epsilon > 0$ be arbitrary. Then $\exists \delta > 0$ s.t.
+\[
+|f(x') - f(x'')| < \frac{\epsilon}{2} \quad \text{for all $x', x'' \in [0,1]$ with $|x' - x''| < \delta$} \quad (6)
+\]
+
+Fix $x \in [0,1]$. Consider
+\[
+S_1 = \left\{ k \in \{0,1,\ldots,n\} \;|\; \left|\frac{k}{n} - x\right| < \delta \right\}, \quad S_2 = \left\{ k \in \{0,1,\ldots,n\} \;|\; \left|\frac{k}{n} - x\right| \geq \delta \right\}
+\]
+Clearly $S_1 \cup S_2 = \{0,1,\ldots,n\}$ and $S_1 \cap S_2 = \varnothing$. Note that:
+\[
+\text{If } k \in S_1 \text{ then } |f(x) - f\left(\frac{k}{n}\right)| < \frac{\epsilon}{2} \text{ due to (6)}
+\]
+\[
+\text{If } k \in S_2 \text{ then } |f(x) - f\left(\frac{k}{n}\right)| \leq |f(x) - f(0)| + |f\left(\frac{k}{n}\right) - f(0)| \leq 2||f||_{\infty}
+\]
+Coming back to (5), we obtain:
+\[
+|f(x) - P_n(x)| \leq \sum_{k \in S_1} |f(x) - f\left(\frac{k}{n}\right)| \cdot \binom{n}{k} x^k (1 - x)^{n-k} + \sum_{k \in S_2} |f(x) - f\left(\frac{k}{n}\right)| \cdot \binom{n}{k} x^k (1 - x)^{n-k}
+\]
+\[
+\leq \frac{\epsilon}{2} \sum_{k \in S_1} \binom{n}{k} x^k (1 - x)^{n-k} + 2||f||_{\infty} \sum_{k \in S_2} \binom{n}{k} x^k (1 - x)^{n-k} \quad (7)
+\]
+For the first sum, we use:
+\[
+\sum_{k \in S_1} \binom{n}{k} x^k(1-x)^{n-k} \leq \sum_{k=0}^{n} \binom{n}{k} x^k(1-x)^{n-k} = 1
+\]
+For the second sum, we use:
+\begin{align*}
+\sum_{k \in S_2} \binom{n}{k} x^k(1-x)^{n-k} & = \frac{1}{\delta^2} \sum_{k \in S_2} \left(\frac{k}{n} - x\right)^2 \binom{n}{k} x^k(1-x)^{n-k} \\
+& \leq \frac{1}{\delta^2} \sum_{k=0}^{n} \left(\frac{k}{n} - x\right)^2 \binom{n}{k} x^k(1-x)^{n-k} \\
+& = \frac{1}{\delta^2} \cdot \frac{1}{n^2} \sum_{k=0}^{n} (k - nx)^2 \binom{n}{k} x^k(1-x)^{n-k} \\
+& = \frac{x(1-x)}{\delta^2 n}.
+\end{align*}
+(page 201 of the textbook)
+
+Returning to (7), we get:
+\[
+|f(x) - P_n(x)| \leq \frac{\epsilon}{2} \cdot 1 + 2\|f\|_{\infty} \cdot \frac{x(1-x)}{\delta^2 n}
+\]
+
+For any $\epsilon > 0$ fixed, there exists $N \in \mathbb{N}$ such that
+\[
+2\|f\|_{\infty} \cdot \frac{x(1-x)}{\delta^2 n} < \frac{\epsilon}{2} \quad \text{for all } n > N.
+\]
+Hence, for all $n > N$,
+\[
+|f(x) - P_n(x)| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
+\]
+\end{proof}

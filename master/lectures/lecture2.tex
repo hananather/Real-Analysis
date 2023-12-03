@@ -1,2 +1,131 @@
 \newpage
 \section{September 11, 2023}
+\subsection{Examples of metric spaces}
+
+Another metric for the set $\mathbb{R}^n$ is the mapping $d_1$, where
+\[
+d_1(x, y) = \sum_{k=1}^{n} |x_k - y_k|.
+\]
+This also reduces to the metric of Example (1) when $n = 1$.
+
+Both the Euclidean metric and the metric $d_1$ just defined are special cases of the metric $d_p$, where
+\[
+d_p(x, y) = \left( \sum_{k=1}^{n} |x_k - y_k|^p \right)^{\frac{1}{p}},
+\]
+with $p \geq 1$. The verification of (M3) for this mapping for general values of $p$ requires a discussion of the H\"{o}lder inequality and the Minkowski inequality.
+
+
+
+(6) A third metric for the set $\mathbb{R}^n$ is given by the mapping $d_{\infty}$, where
+\[
+d_{\infty}(x, y) = \max_{1 \leq k \leq n} |x_k - y_k|.
+\]
+When $n = 1$, we again obtain the metric of Example (1), while when $n = 2$ we obtain that of Example (3). The method of Example (3) is used in showing that $d_{\infty}$ is a metric.
+
+\subsection{Hölder and Minkowski inequalities}
+\begin{example}
+Let \( X = \mathbb{R}^n \) and \( d_p(x, y) = \left( \sum_{k=1}^{n} |x_k - y_k|^p \right)^{\frac{1}{p}} \) for \( p \geq 1 \).
+
+To prove (M3), we use:
+
+\textbf{Hölder inequality}
+\[
+\left| \sum_{k=1}^{n} a_k b_k \right| \leq \left( \sum_{k=1}^{n} |a_k|^p \right)^{\frac{1}{p}} \cdot \left( \sum_{k=1}^{n} |b_k|^q \right)^{\frac{1}{q}}
+\]
+where \( \frac{1}{p} + \frac{1}{q} = 1 \) (extension of Cauchy-Schwarz inequation).
+
+\textbf{Goal}: Prove inequality:
+\[
+\left( \sum_{k=1}^{n} |a_k + b_k|^p \right)^{\frac{1}{p}} \leq \left( \sum_{k=1}^{n} |a_k|^p \right)^{\frac{1}{p}} + \left( \sum_{k=1}^{n} |b_k|^p \right)^{\frac{1}{p}} \quad (\text{Minkowski})
+\]
+
+Then (M3) follows taking \( a_k = x_k - y_k \) and \( b_k = y_k - z_k \).
+
+\textbf{Exercise}: Check this. (Hint: Look at case \( p=2 \), last time)
+
+\end{example}
+\begin{proof}
+\textbf{Proof of (1)}:
+\[
+\left| \sum_{k=1}^{n} a_k b_k \right|^p = \left| a_k b_k \right| \left| a_k + b_k \right|^{p-1} \leq \left( |a_k| + |b_k| \right) \left| a_k + b_k \right|^{p-1}
+\]
+\[
+\leq \left( \sum_{k=1}^{n} |a_k|^p \right)^{\frac{1}{p}} \cdot \left( \sum_{k=1}^{n} \left| a_k + b_k \right|^{(p-1)q} \right)^{\frac{1}{q}} \quad \text{by Hölder's inequality with } \frac{1}{p} + \frac{1}{q} = 1
+\]
+Taking the sum of the previous two inequalities, we get:
+\[
+\sum_{k=1}^{n} |a_k b_k|^p \leq \left( \sum_{k=1}^{n} |a_k|^p \right)^{\frac{1}{p}} + \left( \sum_{k=1}^{n} |b_k|^p \right)^{\frac{1}{p}}
+\]
+Also, we know that:
+\[
+\sum_{k=1}^{n} |a_k + b_k|^p \leq \sum_{k=1}^{n} (|a_k| + |b_k|) |a_k + b_k|^{p-1}
+\]
+Hence, combining the last two inequalities:
+\[
+\sum_{k=1}^{n} |a_k + b_k|^p \leq \left( \sum_{k=1}^{n} |a_k + b_k|^p \right)^{\frac{1}{p}} \cdot \left( \sum_{k=1}^{n} \left( |a_k|^p + |b_k|^p \right) \right)^{\frac{1}{p}}
+\]
+\[
+\leq \left( \sum_{k=1}^{n} |a_k|^p \right)^{\frac{1}{p}} + \left( \sum_{k=1}^{n} |b_k|^p \right)^{\frac{1}{p}} \quad \text{by Minkowski's inequality}
+\]
+\end{proof}
+
+\subsection{$\ell_2$-spaces}
+\begin{definition}
+    Let $\ell_2$ be the set of sequences $x=\{x_k\}_{k\geq 1}$ with $x_k \in \mathbb{C}$ for all $k \geq 1$ such that $\sum_{k=1}^{\infty} |x_k|^2 < \infty$. We define
+\[ d(x,y) = \sqrt{\sum_{k=1}^{\infty} |x_k - y_k|^2} \]
+where $x=\{x_k\}_{k\geq 1}$ and $y=\{y_k\}_{k\geq 1}$.
+\end{definition}
+
+
+\begin{lemma}
+We justify that it makes sense to define $\sqrt{\sum_{k=1}^{\infty} |x_k - y_k|^2}$ as a metric  by proving:
+ \begin{enumerate}
+    \item[a)] $d(x,y) < \infty$ for all $x,y \in \ell_2$.
+    \item[b)] $d(x,z) \leq d(x,y) + d(y,z)$ for all $x,y,z \in \ell_2$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\begin{enumerate}
+    \item[a)] If $|x_k - y_k| \leq |x_k| + |y_k|$, then $|x_k - y_k|^2 \leq (|x_k| + |y_k|)^2$ for any $k=1,\ldots,n$, for any $n \geq 1$ fixed. We take the sum for all $k=1,\ldots,n$ and then square root.
+    \[ \sqrt{\sum_{k=1}^{n} |x_k - y_k|^2} \leq \sqrt{\sum_{k=1}^{n} (|x_k| + |y_k|)^2} \]
+    \[ \leq \sqrt{\sum_{k=1}^{n} |x_k|^2} + \sqrt{\sum_{k=1}^{n} |y_k|^2} \]
+    for any $n \geq 1$ by Minkowski's inequality (p=2).
+    
+    Hence $\sum_{k=1}^{n} |x_k - y_k|^2 \leq M^2 < \infty$ for all $n\geq 1$, and $\sum_{k=1}^{\infty} |x_k - y_k|^2 \leq M^2$.
+    
+    So $d(x,y) = \sqrt{\sum_{k=1}^{\infty} |x_k - y_k|^2} \leq M < \infty$.
+
+    \item[b)] $|x_k - z_k| = |x_k - y_k + y_k - z_k|$. Take the square $|x_k - z_k|^2 \leq (|x_k - y_k| + |y_k - z_k|)^2$. Take the sum for $k=1,\ldots,n$, then the square root. We get:
+    \[ \sqrt{\sum_{k=1}^{n} |x_k - z_k|^2} \leq \sqrt{\sum_{k=1}^{n} (|x_k - y_k| + |y_k - z_k|)^2} \]
+    \[ \leq \sqrt{\sum_{k=1}^{n} |x_k - y_k|^2} + \sqrt{\sum_{k=1}^{n} |y_k - z_k|^2} \]
+    for any $n \geq 1$ by Minkowski's inequality (p=2).
+    
+    Then, taking $n \to \infty$ we get:
+    \[ d(x,z) \leq d(x,y) + d(y,z) \]
+\end{enumerate}
+\end{proof}
+
+\begin{remark}
+Let $\ell_p$ be the set of all sequences $x=\{x_k\}_{k\geq 1}$ with $x_k \in \mathbb{C}$ such that $\sum_{k=1}^{\infty} |x_k|^p < \infty$. If $p \geq 1$, we define
+\[ d(x,y) = \left( \sum_{k=1}^{\infty} |x_k - y_k|^p \right)^{\frac{1}{p}} \]
+where $x=\{x_k\}_{k\geq 1}$ and $y=\{y_k\}_{k\geq 1}$. Then $d$ is a distance on $\ell_p$ (Exercise).
+\end{remark}
+
+\begin{remark}
+If $p \in (0,1)$, we define
+\[ d(x,y) = \sum_{k=1}^{\infty} |x_k - y_k|^p \]
+This is also a distance. (M3) is verified using another inequality:
+\[ |a+b|^p \leq |a|^p + |b|^p \]
+for any $a,b \in \mathbb{R}$ (sub-additivity) if $p \in (0,1)$.
+
+Replacement for Minkowski inequality is:
+\[ \sum_{k=1}^n |a_k+b_k|^p \leq \sum_{k=1}^n |a_k|^p + \sum_{k=1}^n |b_k|^p \]
+\end{remark}
+
+\begin{remark}
+Let $\ell_\infty$ be the space of sequences $x=\{x_k\}_{k\geq 2}$, with $x_k \in \mathbb{C}$, such that $\{x_k\}$ is bounded, i.e., $\exists M>0$ such that $|x_k| \leq M$ for all $k\geq 1$.
+We define
+\[ d(x,y) = \sup_{k \geq 1} |x_k - y_k| \]
+Exercise: check that $d$ is a distance on $\ell_\infty$.
+\end{remark}
