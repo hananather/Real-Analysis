@@ -1,5 +1,67 @@
 \newpage
 \section{September 14, 2023}
+\subsection{Examples of Metric Spaces  - Continued }
+\begin{example}
+    Let $X = C[a,b]$ and define $d(f,g) = \max_{t \in [a,b]} |f(t) - g(t)|$.
+\end{example}
+
+\begin{proof}
+We will prove that this is indeed a metric:
+\begin{itemize}
+  \item[(M1)] $x = y \Rightarrow d(x,y) = 0$. \\
+  Assume $d(x,y) = 0$. We want to show that $x = y$. Assume there exists $t_0 \in [a,b]$ such that $x(t_0) \neq y(t_0)$. Then $d(x,y) = \max_{t \in [a,b]} |x(t) - y(t)| \geq |x(t_0) - y(t_0)| > 0$, which gives a contradiction.
+  
+  \item[(M2)] $d(x,y) = d(y,x)$ (clear) since $|x(t) - y(t)| = |y(t) - x(t)|$ for all $t \in [a,b]$.
+  
+  \item[(M3)] $|x(t) - z(t)| \leq |x(t) - y(t)| + |y(t) - z(t)|$. Then, taking the maximum, we obtain: $d(x,z) \leq d(x,y) + d(y,z)$.
+  \end{itemize}
+\end{proof}
+
+
+\begin{example}
+Let \(X = C[a, b]\) and define a metric on \(X\) by
+\[ d(x, y) = \int_a^b |x(t) - y(t)| \, dt. \]
+\end{example}
+\begin{proof}
+We check that the metric axioms (M1)--(M3) hold.
+\begin{enumerate}
+ \item \textbf{(M1)} If \(x = y\) then \(d(x, y) = 0\).
+Assume that \(d(x, y) = 0\). We show that \(x = y\).
+Assume that there exists \(t_0 \in [a, b]\) such that \(x(t_0) \neq y(t_0)\).
+Let \(f = |x - y|\), clearly \(f\) is continuous. Hence for every \(\varepsilon > 0\), there exists \(\delta > 0\) such that
+\[ |f(t) - f(t_0)| < \varepsilon \]
+for all \(t\) such that \(|t - t_0| < \delta\).
+This is equivalent to: \(f(t_0) - \varepsilon < f(t) < f(t_0) + \varepsilon\).
+Taking \(\varepsilon = \frac{f(t_0)}{2}\), then
+\[ f(t) > \frac{f(t_0)}{2} \]
+for \(t \in (t_0 - \delta, t_0 + \delta)\), and hence
+\[ d(x, y) \geq \int_{t_0 - \delta}^{t_0 + \delta} |x(t) - y(t)| \, dt \geq 2\delta \frac{f(t_0)}{2} > 0, \]
+which is a contradiction.
+
+ \item \textbf{(M2)} is clear.
+
+ \item \textbf{(M3)}: \( |x(t) - z(t)| \leq |x(t) - y(t)| + |y(t) - z(t)| \) for all \(t \in [a, b]\).
+Hence
+\[ \int_a^b |x(t) - z(t)|\,dt \leq \int_a^b |x(t) - y(t)|\,dt + \int_a^b |y(t) - z(t)|\,dt \]
+This proves that \(d(x, z) \leq d(x, y) + d(y, z)\).
+\end{enumerate}
+\end{proof}
+
+
+\begin{example}
+Let \(X = C[a, b]\) and define a metric on \(X\) by
+\[ d(x, y) = \left(\int_a^b (x(t) - y(t))^2 \, dt\right)^{\frac{1}{2}}. \]
+In verifying (M1), the same note as in Example (12) is relevant. For the triangle inequality, an integral version of the Cauchy--Schwarz inequality must first be obtained. See Exercise 2.4(6). We will denote this metric space by \(C_2[a, b]\).
+\end{example}
+\begin{proof}[Proof notes]
+The proof for \(d_p\) being a metric is omitted; it uses:
+\begin{itemize}
+  \item H\"older's inequality: \(\int_a^b |f(t)g(t)|\,dt \leq \left(\int_a^b |f(t)|^p\,dt\right)^{\frac{1}{p}} \left(\int_a^b |g(t)|^q\,dt\right)^{\frac{1}{q}}\) where \(\frac{1}{p} + \frac{1}{q} = 1\).
+  \item Minkowski's inequality: \(\left(\int_a^b |f(t) + g(t)|^p\,dt\right)^{\frac{1}{p}} \leq \left(\int_a^b |f(t)|^p\,dt\right)^{\frac{1}{p}} + \left(\int_a^b |g(t)|^p\,dt\right)^{\frac{1}{p}}\).
+\end{itemize}
+\end{proof}
+
+
 \subsection{Convergence in metric spaces}
 \begin{theorem}
     We summarize a few results :

@@ -129,3 +129,18 @@ We define
 \[ d(x,y) = \sup_{k \geq 1} |x_k - y_k| \]
 Exercise: check that $d$ is a distance on $\ell_\infty$.
 \end{remark}
+
+\begin{example}
+Let $X = \mathbb{C}$. Consider the distance function $d(x,y) = \frac{|x-y|}{\sqrt{(1+|x|^2)(1+|y|^2)}}$, which is called the chordal distance.
+\end{example}
+\begin{proof}
+The proof that $d$ is a distance is omitted.
+\end{proof} 
+
+\begin{example}
+Let $X = C[a,b]$ where $C[a,b] = \{ f : [a,b] \rightarrow \mathbb{R} \mid f \text{ is continuous} \}$. Recall (MAT2125) that a function $f: [a,b] \rightarrow \mathbb{R}$ is continuous at $x_0 \in [a,b]$ if for every $\varepsilon > 0$ there exists $\delta > 0$ such that for all $x \in (x_0 - \delta, x_0 + \delta)$ we have $|f(x) - f(x_0)| < \varepsilon$, i.e., $|x-x_0| < \delta$. $f$ is continuous on $[a,b]$ if $f$ is continuous at every $x \in [a,b]$.
+\\
+\textbf{Observation:} If $f$ is continuous at $x_0$ then $\lim_{x \to x_0} f(x) = f(x_0)$.
+\\
+Let $d(f,g) = \max_{t \in [a,b]} |f(t) - g(t)|$. Note: $|x-y|$ is a continuous function on $[a,b]$, and $[a,b]$ is compact, hence the maximum is attained, and $d$ is well-defined. $d$ is called the uniform metric.
+\end{example}
